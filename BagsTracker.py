@@ -13,11 +13,3 @@ def get_min_size_of_square(n, w, h):
         area = min(area, max(count_in_column * w, h * count_of_row))
         count_of_row += 1
     return area
-
-
-if __name__ == '__main__':
-    # print(get_min_size_of_square(10, 2, 3))
-    print(get_min_size_of_square(2, 100000000, 99999999))
-
-    # print(get_min_size_of_square(101, 1, 1))
-    # print(get_min_size_of_square(16, 12, 13))
