@@ -1,15 +1,22 @@
+from math import ceil, floor
+
+
 def get_min_size_of_square(n, w, h):
-    count_of_row = 2
-    area = n * w
-    area_last = area
-    while area_last >= area and count_of_row <= n:
-        area_last = area
-        if n % count_of_row != 0:
-            count_in_column = round(n / count_of_row)
-            if count_in_column * count_of_row < n:
-                count_in_column += 1
+    left = 1
+    right = max(w, h) * n
+    while True:
+        if right - left == 1:
+            ans = right
+            break
+        middle = ceil((right - left) / 2 + left)
+        count_in_row = floor(middle / w)
+        count_in_column = floor(middle / h)
+        area = count_in_row * count_in_column
+        if area < n:
+            left = middle
+        elif area > n:
+            right = middle
         else:
-            count_in_column = n / count_of_row
-        area = min(area, max(count_in_column * w, h * count_of_row))
-        count_of_row += 1
-    return area
+            ans = middle
+            break
+    return ans
